@@ -1,33 +1,54 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import notificationData from './notifications'
+import Notification from './Notification'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [notifications, setNotifications] = useState(notificationData)
+
+  function clearNotification(id) {
+    setNotifications(notifications.filter(notification => notification.id !== id))
+  }
+
+  function clearAllNotifications() {
+    setNotifications([])
+  }
+
+  const notificationItems = notifications.map(notification => (
+    <Notification
+      key={notification.id}
+      id={notification.id}
+      name={notification.name}
+      onClear={() => clearNotification(notification.id)}
+    >
+      {notification.message}
+    </Notification>
+  ))
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <main className="notifications-app">
+      <header>
+        <h1>Notifications</h1>
+        <p>View your messages and clear them when you are done.</p>
+      </header>
+
+      <div className="notification-controls">
+        <p role="status">Notifications remaining: {notifications.length}</p>
+        <button
+          type="button"
+          onClick={clearAllNotifications}
+          disabled={notifications.length === 0}
+        >
+          Clear all notifications
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+
+      <ul className="notification-list">{notificationItems}</ul>
+
+      {notifications.length === 0 && (
+        <p className="empty-message">No notifications remaining.</p>
+      )}
+    </main>
   )
 }
 

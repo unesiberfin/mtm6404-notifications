@@ -1,41 +1,86 @@
-#root {
-  max-width: 1280px;
+.notifications-app {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0;
+  color: #183f44;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0.5rem 0 1.5rem;
+}
+
+.notification-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.notification-controls p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.notification-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #cbd8d9;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.notification-content {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.notification-id {
+  color: #526669;
+  font-size: 0.875rem;
+}
+
+.notification h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+.notification p {
+  margin: 0;
+}
+
+.notification button {
+  flex-shrink: 0;
+}
+
+.empty-message {
+  padding: 2rem 1rem;
+  border: 1px solid #cbd8d9;
+  border-radius: 8px;
+  background-color: #fff;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 600px) {
+  .notification {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
